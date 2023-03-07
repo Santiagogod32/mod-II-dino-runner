@@ -50,8 +50,8 @@ class Dinosaur:
             self.dino_run = True
             self.dino_jump = False
 
-    def draw(self, SCREEN):
-        SCREEN.blit(self.image, (self.dino_rect.x, self.dino_rect.y))
+    def draw(self, screen):
+        screen.blit(self.image, (self.dino_rect.x, self.dino_rect.y))
         
     def run(self):
         self.image = self.run_img[self.step < 5]
