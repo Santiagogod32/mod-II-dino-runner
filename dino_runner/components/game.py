@@ -21,7 +21,6 @@ class Game:
         self.game_speed = self.INITIAL_SPEED
         self.x_pos_cl = SCREEN_WIDTH + random.randint(800, 1000)
         self.y_pos_cl = random.randint(50, 100)
-        self.clouds = []
         self.x_pos_bg = 0
         self.y_pos_bg = 380
         self.player = Dinosaur()
@@ -43,12 +42,13 @@ class Game:
         if self.playing == False:
             self.deaths += 1
 
-        death, death_rect = get_score_deaths(self.deaths)
-        self.screen.blit(death, death_rect)
+      
         
     def show_menu(self):
         self.screen.fill((255, 255, 255))
         text, text_rect = get_centered_message('Prees any key to Start!!')
+        death, death_rect = get_score_deaths(self.deaths)
+        self.screen.blit(death, death_rect)
         self.screen.blit(text, text_rect)
         pygame.display.update()
 
@@ -59,7 +59,7 @@ class Game:
                 pygame.quit()
             if event.type == pygame.KEYDOWN:
                 self.run()    
-
+        
 
     def run(self):
         # Game loop: events - update - draw
@@ -111,7 +111,7 @@ class Game:
         if self.x_pos_cl < -image_width:
             self.x_pos_cl = SCREEN_WIDTH + 1000
             self.y_pos_cl = random.randint(50, 100)
-            self.screen.blit(CLOUD, (self.x_pos_cl, self.y_pos_cl))
+            self.screen.blit (CLOUD, (self.x_pos_cl, self.y_pos_cl))
                
         
 
