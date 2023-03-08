@@ -8,7 +8,7 @@ class Dinosaur:
     Y_POS = 310
     Y_POS_DUCK = 340
     JUMP_VEL = 15
-    Y_LIMIT = 150
+    Y_LIMIT = 100
 
     def __init__(self):
         self.duck_img = DUCKING
@@ -68,7 +68,6 @@ class Dinosaur:
         self.step += 1
 
     def jump(self):
-        self.image = self.jump_img
         self.dino_rect.y -= self.JUMP_VEL
         if self.dino_rect.y <= self.Y_LIMIT:
             self.JUMP_VEL *= -1
