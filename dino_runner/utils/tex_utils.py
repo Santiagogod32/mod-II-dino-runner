@@ -43,5 +43,5 @@ def get_best_score(best_points):
 def dinosaur_icon():
     text = ICON
     text_rect = text.get_rect()
-    text_rect.center = (520, 170)
+    text_rect.center = (520, 150)
     return text, text_rect
