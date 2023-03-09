@@ -1,6 +1,7 @@
+import random
 import pygame
 
-from dino_runner.utils.constants import ICON, SCREEN_HEIGHT, SCREEN_WIDTH
+from dino_runner.utils.constants import DEAD, ICON, RESET, RUNNING, RUNNING_SHIELD, SCREEN_HEIGHT, SCREEN_WIDTH
 
 FONT_STYLE = 'freesansbold.ttf'
 BLACK_COLOR = (0, 0, 0)
@@ -40,8 +41,10 @@ def get_best_score(best_points):
     text_rect.center = (520, 500)
     return text, text_rect
 
-def dinosaur_icon():
-    text = ICON
-    text_rect = text.get_rect()
-    text_rect.center = (520, 150)
-    return text, text_rect
+def dinosaur_icon(self):
+    icon = RUNNING[0]
+    if self.player.image == DEAD:
+        icon = RESET
+    icon_rect = icon.get_rect()
+    icon_rect.center = (520, 150)
+    return icon, icon_rect
