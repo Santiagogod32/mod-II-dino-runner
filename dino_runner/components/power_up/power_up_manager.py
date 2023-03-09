@@ -1,8 +1,9 @@
 import random
 from pygame.sprite import Sprite
+from dino_runner.components.power_up.hammer import Hammer
 
 from dino_runner.components.power_up.shield import Shield
-from dino_runner.utils.constants import DEFAULT_TYPE, SHIELD, SHIELD_TYPE
+from dino_runner.utils.constants import DEFAULT_TYPE, HAMMER, SHIELD, SHIELD_TYPE
 
 class PowerUpManager(Sprite):
 
@@ -14,7 +15,8 @@ class PowerUpManager(Sprite):
 
     def generate_power_up(self):
         if random.randint(0, 100) < self.POWER_UP_PROBABILITY:
-            self.power_ups.append(Shield(SHIELD))
+            list_power = [Shield(SHIELD), Hammer(HAMMER)]
+            self.power_ups.append(list_power[random.randint(0, 1)])
 
     def update(self, game):
         if len(self.power_ups) == 0 and game.player.type == DEFAULT_TYPE:
