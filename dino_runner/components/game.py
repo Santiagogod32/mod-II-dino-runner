@@ -5,7 +5,7 @@ from dino_runner.components.obstacle.obstacle_manager import ObstacleManager
 from dino_runner.components.power_up.power_up_manager import PowerUpManager
 
 from dino_runner.utils.constants import BG, CLOUD, DEAD, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS
-from dino_runner.utils.tex_utils import get_best_score, get_centered_message, get_last_score, get_score_deaths, get_score_elements
+from dino_runner.utils.tex_utils import dinosaur_icon, get_best_score, get_centered_message, get_last_score, get_score_deaths, get_score_elements
 
 
 class Game:
@@ -31,6 +31,7 @@ class Game:
         self.points_menu = 0
         self.best_points = 0
         self.deaths = 0
+        self.icon = ICON
 
     def show_score(self):
 
@@ -63,13 +64,15 @@ class Game:
     def show_menu(self):
         self.screen.fill((255, 255, 255))
         text, text_rect = get_centered_message('Prees any key to Start!!')
+        self.screen.blit(text, text_rect)
+        text, text_rect = dinosaur_icon()
+        self.screen.blit(text, text_rect)
         best_score, best_score_rect = get_best_score(self.best_points)
         self.screen.blit(best_score, best_score_rect)
         menu_points, menu_points__rect = get_last_score(self.points_menu)
         self.screen.blit(menu_points, menu_points__rect)
         death, death_rect = get_score_deaths(self.deaths)
         self.screen.blit(death, death_rect)
-        self.screen.blit(text, text_rect)
         pygame.display.update()
 
         events = pygame.event.get()

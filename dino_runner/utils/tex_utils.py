@@ -1,6 +1,6 @@
 import pygame
 
-from dino_runner.utils.constants import SCREEN_HEIGHT, SCREEN_WIDTH
+from dino_runner.utils.constants import ICON, SCREEN_HEIGHT, SCREEN_WIDTH
 
 FONT_STYLE = 'freesansbold.ttf'
 BLACK_COLOR = (0, 0, 0)
@@ -38,4 +38,10 @@ def get_best_score(best_points):
     text = font.render(f"Best points: {best_points}", True, BLACK_COLOR )
     text_rect = text.get_rect()
     text_rect.center = (520, 500)
+    return text, text_rect
+
+def dinosaur_icon():
+    text = ICON
+    text_rect = text.get_rect()
+    text_rect.center = (520, 170)
     return text, text_rect
