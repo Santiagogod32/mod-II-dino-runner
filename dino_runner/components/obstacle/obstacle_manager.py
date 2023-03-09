@@ -30,6 +30,7 @@ class ObstacleManager:
             elif game.player.dino_rect.colliderect(obstacle.rect):
                 game.player.dead()
                 game.playing = False
+                
                 break
 
     def draw(self, screen):

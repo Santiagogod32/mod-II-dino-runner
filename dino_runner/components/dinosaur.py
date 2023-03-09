@@ -28,12 +28,12 @@ class Dinosaur(Sprite):
 
     def process_events(self, userInput):
 
-        if userInput[pygame.K_DOWN]:
+        if userInput[pygame.K_DOWN] :
             self.dino_duck = True
             self.dino_run = False
             self.dino_jump = False
 
-        elif userInput[pygame.K_UP]:
+        elif userInput[pygame.K_UP] or userInput[pygame.K_SPACE]:
             self.dino_duck = False
             self.dino_run = False
             self.dino_jump = True

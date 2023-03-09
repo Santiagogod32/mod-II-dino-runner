@@ -4,7 +4,7 @@ from dino_runner.components.dinosaur import Dinosaur
 from dino_runner.components.obstacle.obstacle_manager import ObstacleManager
 from dino_runner.components.power_up.power_up_manager import PowerUpManager
 
-from dino_runner.utils.constants import BG, CLOUD, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS
+from dino_runner.utils.constants import BG, CLOUD, DEAD, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS
 from dino_runner.utils.tex_utils import get_centered_message, get_score_deaths, get_score_elements
 
 
@@ -41,7 +41,7 @@ class Game:
 
     def show_deaths(self):
         
-        if self.playing == False:
+        if self.player.image == DEAD:
             self.deaths += 1
 
       
