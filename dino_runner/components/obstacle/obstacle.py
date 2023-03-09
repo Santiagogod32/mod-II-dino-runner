@@ -18,6 +18,4 @@ class Obstacle(Sprite):
     def draw(self, screen):
         screen.blit(self.image, self.rect)
     
-    def delete(self, obstacles):
-        if game.player.dino_rect.colliderect(obstacles.rect):
-            obstacles.pop()   
+  
