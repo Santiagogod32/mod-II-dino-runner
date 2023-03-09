@@ -1,7 +1,7 @@
 import random
 import pygame
 
-from dino_runner.utils.constants import DEAD, ICON, RESET, RUNNING, RUNNING_SHIELD, SCREEN_HEIGHT, SCREEN_WIDTH
+from dino_runner.utils.constants import CLOUD, DEAD, GAME_OVER, ICON, RESET, RUNNING, RUNNING_SHIELD, SCREEN_HEIGHT, SCREEN_WIDTH
 
 FONT_STYLE = 'freesansbold.ttf'
 BLACK_COLOR = (0, 0, 0)
@@ -48,3 +48,12 @@ def dinosaur_icon(self):
     icon_rect = icon.get_rect()
     icon_rect.center = (520, 150)
     return icon, icon_rect
+
+def get_game_over(self):
+    over = CLOUD
+    if self.player.image == DEAD:
+        over = GAME_OVER
+    over_rect = over.get_rect()
+    over_rect.center = (520, 70)
+    return over, over_rect
+

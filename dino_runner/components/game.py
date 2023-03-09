@@ -5,7 +5,7 @@ from dino_runner.components.obstacle.obstacle_manager import ObstacleManager
 from dino_runner.components.power_up.power_up_manager import PowerUpManager
 
 from dino_runner.utils.constants import BG, CLOUD, DEAD, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS
-from dino_runner.utils.tex_utils import dinosaur_icon, get_best_score, get_centered_message, get_last_score, get_score_deaths, get_score_elements
+from dino_runner.utils.tex_utils import dinosaur_icon, get_best_score, get_centered_message, get_game_over, get_last_score, get_score_deaths, get_score_elements
 
 
 class Game:
@@ -67,6 +67,8 @@ class Game:
         self.screen.blit(text, text_rect)
         icon, icon_rect = dinosaur_icon(self)
         self.screen.blit(icon , icon_rect)
+        over, over_rect = get_game_over(self)
+        self.screen.blit(over, over_rect)
         best_score, best_score_rect = get_best_score(self.best_points)
         self.screen.blit(best_score, best_score_rect)
         menu_points, menu_points__rect = get_last_score(self.points_menu)
