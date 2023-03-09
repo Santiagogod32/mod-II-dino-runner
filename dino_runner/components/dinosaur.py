@@ -8,6 +8,7 @@ class Dinosaur(Sprite):
     Y_POS = 310
     JUMP_VEL = 15
     Y_LIMIT = 100
+    POWER_UP_TIME = 200
     
 
     def __init__(self):
@@ -23,6 +24,7 @@ class Dinosaur(Sprite):
         self.run_img= {DEFAULT_TYPE: RUNNING, SHIELD_TYPE: RUNNING_SHIELD }
         self.jump_img = {DEFAULT_TYPE: JUMPING, SHIELD_TYPE: JUMPING_SHIELD }
         self.duck_img = {DEFAULT_TYPE: DUCKING, SHIELD_TYPE: DUCKING_SHIELD }
+        self.power_up_time = 0
 
     def process_events(self, userInput):
 
@@ -46,6 +48,10 @@ class Dinosaur(Sprite):
             self.jump()
         else:
             self.run()
+
+        self.power_up_time -= 1
+        if self.power_up_time < 0:
+            self.type = DEFAULT_TYPE
 
         self.step_index = self.step_index + 1
         if self.step_index == 10:
@@ -79,5 +85,11 @@ class Dinosaur(Sprite):
 
     def dead(self):
         self.image = DEAD    
+    
+    def activate_power_up(self, power_up_type):
+        if power_up_type == SHIELD_TYPE:
+            self.type = SHIELD_TYPE
+            self.power_up_time = self.POWER_UP_TIME
+
 
         

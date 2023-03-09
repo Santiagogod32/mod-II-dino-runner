@@ -2,6 +2,7 @@ import pygame
 import random
 from dino_runner.components.dinosaur import Dinosaur
 from dino_runner.components.obstacle.obstacle_manager import ObstacleManager
+from dino_runner.components.power_up.power_up_manager import PowerUpManager
 
 from dino_runner.utils.constants import BG, CLOUD, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS
 from dino_runner.utils.tex_utils import get_centered_message, get_score_deaths, get_score_elements
@@ -25,6 +26,7 @@ class Game:
         self.y_pos_bg = 380
         self.player = Dinosaur()
         self.obstacle_manager = ObstacleManager()
+        self.power_up_manager = PowerUpManager()
         self.points = 0
         self.deaths = 0
 
@@ -68,10 +70,12 @@ class Game:
             self.events()
             self.update()
             self.draw()
+        pygame.time.delay(2000)
         self.playing = False
         self.points = 0
         self.game_speed = self.INITIAL_SPEED
         self.obstacle_manager.remove_obstacle()
+        self.power_up_manager.remove_power_ups()
 
     def events(self):
         for event in pygame.event.get():
@@ -82,6 +86,7 @@ class Game:
         user_imput = pygame.key.get_pressed()
         self.player.update(user_imput)
         self.obstacle_manager.update(self)
+        self.power_up_manager.update(self)
 
     def draw(self):
         self.clock.tick(FPS)
@@ -90,6 +95,7 @@ class Game:
         self.draw_cloud()
         self.player.draw(self.screen)
         self.obstacle_manager.draw(self.screen)
+        self.power_up_manager.draw(self.screen)
         self.show_score()
         self.show_deaths()
         pygame.display.update()
@@ -106,13 +112,13 @@ class Game:
     
     def draw_cloud(self):
         image_width = CLOUD.get_width()
-        self.screen.blit(CLOUD, (self.x_pos_cl, self.y_pos_cl))
+        self.screen.blit(CLOUD, (self.x_pos_cl, self.y_pos_cl))  
         self.x_pos_cl -= self.game_speed
         if self.x_pos_cl < -image_width:
             self.x_pos_cl = SCREEN_WIDTH + 1000
             self.y_pos_cl = random.randint(50, 100)
-            self.screen.blit (CLOUD, (self.x_pos_cl, self.y_pos_cl))
-               
+            self.screen.blit(CLOUD, (self.x_pos_cl, self.y_pos_cl))
+             
         
 
 
